@@ -1,51 +1,38 @@
-// import { useContext, useEffect, useState } from 'react'
-// import { FirebaseContext } from '../context/firebase'
-
-// function UseAuthListener() {
-//   const [user, setUser] = useState(
-//             JSON.parse(localStorage.getItem('authUser'))
-//         );
-//         const{ firebase } = useContext(FirebaseContext)
-//         useEffect(() => {
-//           const listener = 
-//           firebase
-//           .auth()
-//           .onAuthStateChanged((authUser) =>{
-//             if(authUser){
-//                 localStorage.setItem('authUser', JSON.stringify(authUser))
-//                 setUser(null);
-//             }
-//           });
-//           return () => listener()
-//         }, [])
-//         return { user }
-// }
-
-// export default UseAuthListener
-
-
-
-
-import { useState, useEffect, useContext } from 'react';
-import { FirebaseContext } from '../context/firebase';
+import { onAuthStateChanged } from 'firebase/auth';
+import { useState, useEffect,  } from 'react';
+import { auth } from '../context/firebase.prod';
 
 export default function UseAuthListener() {
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('authUser')));
-  const { firebase } = useContext(FirebaseContext);
+  const [user, setUser] = useState({});
 
   useEffect(() => {
-    const listener = firebase.auth().onAuthStateChanged((authUser) => {
-      if (authUser) {
-        localStorage.setItem('authUser', JSON.stringify(authUser));
-        setUser(authUser);
-      } else {
-        localStorage.removeItem('authUser');
-        setUser(null);
-      }
+    const unsub = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+      console.log(user);
     });
 
-    return () => listener();
+    return () => {
+      unsub();
+    };
   }, []);
+
+
+  // useEffect(() => {
+  //   const listener = firebase.auth().onAuthStateChanged((authUser) => {
+  //     if (authUser) {
+  //       localStorage.setItem('authUser', JSON.stringify(authUser));
+  //       setUser(authUser);
+  //     } else {
+  //       localStorage.removeItem('authUser');
+  //       setUser(null);
+  //     }
+  //   });
+
+  //   return () => listener();
+  // }, []);
 
   return { user };
 }
+
+
+

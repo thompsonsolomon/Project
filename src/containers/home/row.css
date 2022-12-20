@@ -67,13 +67,12 @@
 
 .bannerCon {
   margin-left: 30px;
-  padding-top: 148px;
-  height: 370px;
-}
-@media (max-width:768px) {
-  .bannerCon{
-    padding-top: 140px;
-  }
+  height: calc(100vh - 60px);
+  display: flex;
+  width: 70%;
+  justify-content: center;
+  align-items:right;
+  flex-direction: column;
 }
 .BannerTitle {
   font-size: 3.4rem;
@@ -102,6 +101,8 @@
   padding-left: 2rem;
   padding-right: 2rem;
   margin-right: 1rem;
+  width: 150px;
+  margin-top: 15px;
   padding-top: 0.5rem;
   background-color: rgba(51, 51, 51, 0.5);
   padding-bottom: 0.5rem;
@@ -339,9 +340,7 @@
   .BannerTitle{
     font-size:40px;
   }
-  .bannerCon{
-    margin-left:10px;
-  }
+
 }
 
 @media (max-width: 1000px) {

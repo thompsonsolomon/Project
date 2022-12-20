@@ -21,6 +21,7 @@ export default function Main() {
                 <Accodion key={title} title={title} content={content} />
               ))}
           </div>
+
         </div>
         <OptForm />
         <Footer />

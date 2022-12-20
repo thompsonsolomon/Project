@@ -1,16 +1,16 @@
-import React, { useState, useContext } from "react";
+import React, { useState, } from "react";
 import {useHistory} from 'react-router-dom'
 import "../components/styles/Form.css";
-import { FirebaseContext } from "../context/firebase";
 import { NavLink } from "react-router-dom";
 import logo from "../components/image/Netflix-Logo.svg";
 import * as ROUTES from '../constants/routes'
 import Swal from "sweetalert2"
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../context/firebase.prod";
 
 export default function Signin() {
 
 
-    const { firebase } = useContext(FirebaseContext);
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [error, setError] = useState("");
@@ -19,12 +19,9 @@ export default function Signin() {
 
 
 
-  const HandleSignin = (event) => {
+  const HandleSignin = async (event) => {
     event.preventDefault()
-    firebase
-    .auth()
-    .signInWithEmailAndPassword(email, password)
-    .then(() =>{
+    await signInWithEmailAndPassword(auth, email, password);
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
@@ -42,7 +39,6 @@ export default function Signin() {
             title: 'Sign-in successful. ' 
         })
         history.push(ROUTES.BROWSE )
-    })
     .catch((error) =>{
         setemail('')
         setpassword('')

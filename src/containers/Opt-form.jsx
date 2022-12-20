@@ -7,7 +7,7 @@ export default function OptForm() {
             <div className='OptFormContainer'>
                 <div className="optforminput">
                     <input type="text" className="optFormInput" placeholder='Email address' />
-                    <button className="optFormButton">Try it now <span className="angleWrite">></span> </button>
+                    <button className="optFormButton">Try it now <span className="angleWrite">{">"}</span> </button>
                 </div>
                 <p className="optFormText">Ready to watch? Enter your email to creat or restart our membership </p>
             </div>

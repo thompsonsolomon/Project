@@ -12,7 +12,8 @@ function BrowseCon() {
   const handleToggle = () => {
     setisActive((current) => !current);
   };
- return(<div className={darkMode ? "dark-mode" : "light-mode"}>
+  return (
+    <div className={darkMode ? "dark-mode" : "light-mode"}>
       <Nav />
       <Banner />
       <div className="RowCon">
@@ -20,7 +21,9 @@ function BrowseCon() {
           islargeRow
           title="NETFLIX ORIGINALS"
           fetchUrl={requests.fetchNetflixOriginals}
+          
         />
+
         <Row title="Top Rated" fetchUrl={requests.fetchTopRated} />
         <Row title="Action Movies" fetchUrl={requests.fetchActionMovies} />
         <Row title="Comedy Movies" fetchUrl={requests.fetchComedyMovies} />
@@ -62,14 +65,16 @@ function BrowseCon() {
           <p>
             This is a Netflix clone by Thompson Solomon. A student of cholatrek
             traning institute , using React js which is one of the most powerful
-            js libray. To know more about  React, check out the .
-            <a href="https://reactjs.org/">React documentation</a>. To learn React js or
-            more check out <a href="cholatrek.io">cholatrek.io</a> for
-            structured and supervised learning with cool mentors and awesome
+            js libray. To know more about React, check out the .
+            <a href="https://reactjs.org/">React documentation</a>. To learn
+            React js or more check out <a href="cholatrek.io">cholatrek.io</a>{" "}
+            for structured and supervised learning with cool mentors and awesome
             course mates
           </p>
           <div className="las">
+            
             <Mode />
+
             <div className={darkMode ? "dark-mode" : "light-mode"}>
               <div className="modeCon">
                 <span>⛅</span>
@@ -90,7 +95,6 @@ function BrowseCon() {
 }
 
 export default BrowseCon;
-
 
 //css cross flip edit
 // css windmill flip edit

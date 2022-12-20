@@ -43,7 +43,7 @@ export default function Banner() {
                 <button className="bannerButton">Play</button>
                 <button className="bannerButton">My List</button>
                 <h1 className="bannerDiscription">
-                    {truncate(movie?.overview, 120)}
+                    {truncate(movie?.overview, 200)}
                 </h1>
             </div>
 
@@ -52,3 +52,5 @@ export default function Banner() {
         </header>
     )
 }
+
+// https://github.com/thompsonsolomon/Project

@@ -1,7 +1,8 @@
 import React from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
-import { firebase } from "../../context/firebase.prod";
 import Swal from "sweetalert2"
+import { signOut } from "firebase/auth";
+import { auth } from "../../context/firebase.prod";
 
 
 export default function Mode() {
@@ -10,36 +11,43 @@ export default function Mode() {
 
 
   const HandlelogOut = () => {
-    firebase
-      .auth()
-      .signOut()
-      .then(() => {
-        // Sign-out successful.
-        
-          const Toast = Swal.mixin({
-              toast: true,
-              position: 'top-end',
-              showConfirmButton: false,
-              timer: 5000,
-              timerProgressBar: true,
-              didOpen: (toast) => {
-                  toast.addEventListener('mouseenter', Swal.stopTimer)
-                  toast.addEventListener('mouseleave', Swal.resumeTimer)
-              }
-          })
+    try {
+    signOut(auth)
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 5000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    })
 
-          Toast.fire({
-              icon: 'success',
-              title: 'Sign-out successful.' 
-          })
-        localStorage.removeItem("authUser");
-      }).then(() =>{
-        history.push("./sign_in")
-      })
-      .catch((error) => {
-        // An error happened
-        console.log(error.message)
-      });
+    Toast.fire({
+        icon: 'success',
+        title: 'Sign-out successful.' 
+    })
+  localStorage.removeItem("authUser");
+  history.push("./sign_in")
+    } catch (error) {
+     
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 5000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    })
+    Toast.fire({
+        icon: 'success',
+        title: error.message 
+    })}
   };
 
   return (
