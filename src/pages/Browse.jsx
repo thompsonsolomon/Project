@@ -1,21 +1,10 @@
 import React from 'react'
 import BrowseCon from '../containers/home/BrowseCon'
 import Profile from '../containers/profile/SelectProfileContainer'
-// import Profile from '../containers/profile/Profile'
-// function ID() {
-//   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c =>{
-//       const piece = (Math.random() * 16 ) | 0;
-//       const elem = c === 'x' ? piece : (piece & 0x3) | 0x8;
-//       return elem.toString(16);
-//   })
-// }
-      {/* <input type="text" value= {ID()}/> */}
 
 function Browse() {
   return (
      <>
-      {/* <Profile /> */}
-      {/* <Profile /> */}
      <BrowseCon />
      </>
 
